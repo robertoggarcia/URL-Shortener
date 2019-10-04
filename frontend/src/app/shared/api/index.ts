@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse, HttpEvent, HttpEventType } 
 
 @Injectable()
 export class ApiService {
-  private host = 'http://127.0.0.1:8000/';
+  private host = 'https://robggarcia.tech/';
   private apiUrl = this.host + 'api/v1/';
   private loggedIn = false;
 
