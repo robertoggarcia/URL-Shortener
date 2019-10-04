@@ -21,6 +21,8 @@ class Base(Configuration):
         'django.contrib.staticfiles',
         'rest_framework',
         'corsheaders',
+        'sequences.apps.SequencesConfig',
+        'core'
     ]
 
     MIDDLEWARE = [
