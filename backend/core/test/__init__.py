@@ -19,8 +19,8 @@ class TestBase(APITestCase):
         self.token = None if result.status_code != 200 else result.data['access']
         return self.token
 
-    def get(self, uri):
-        return self.client.get('/api/v1/%s' % uri, HTTP_AUTHORIZATION='Bearer %s' % self.token)
+    def get(self, uri, q=''):
+        return self.client.get('/api/v1/%s/%s' % (uri, q), HTTP_AUTHORIZATION='Bearer %s' % self.token)
 
     def post(self, uri, data):
-        return self.client.post('/api/v1/%s' % uri, data, HTTP_AUTHORIZATION='Bearer %s' % self.token, format='json')
+        return self.client.post('/api/v1/%s/' % uri, data, HTTP_AUTHORIZATION='Bearer %s' % self.token, format='json')
