@@ -1,0 +1,45 @@
+<div id="page-top">
+  <div id="wrapper">
+    <app-sidebar></app-sidebar>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <!-- Main Content -->
+      <div id="content">
+        <app-header></app-header>
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+          <div class="row text-center">
+            <div class="col-md-12 text-center">
+              <form class="form-inline text-center">
+                <div class="form-group mb-2">
+                  <label for="formGroupExampleInput">URL</label>
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                  <label class="sr-only">Url</label>
+                  <input type="text" class="form-control" name="url" placeholder="https://algo.com" style="width: 500px;" [(ngModel)]="url">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2" (click)="generateUrl()">Generar</button>
+              </form>
+            </div>
+
+            <div class="col-md-12">
+              <div class="alert alert-info" role="alert" *ngIf="!invalid && short_url && !errors">
+                {{short_url}}
+              </div>
+              <div class="alert alert-danger" role="alert" *ngIf="invalid">
+                Debes ingresar una url valida.
+              </div>
+              <div class="alert alert-danger" role="alert" *ngIf="errors">
+                Intenta de nuevo más tarde
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- End of Main Content -->
+      <app-footer></app-footer>
+    </div>
+    <!-- End of Content Wrapper -->
+  </div>
+</div>

@@ -34,7 +34,8 @@ export class LoginComponent implements OnInit {
       const password = this.registerForm.value['password'];
       this.api.login(username, password).subscribe(res => {
         localStorage.setItem('token', res.access);
-        this.router.navigate(['/users']);
+        localStorage.setItem('user_id', res.user_id);
+        this.router.navigate(['/']);
       },
         err => {
           console.log(err);

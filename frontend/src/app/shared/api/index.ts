@@ -28,8 +28,20 @@ export class ApiService {
 
   logout(): boolean {
     localStorage.removeItem('token');
+    localStorage.removeItem('user_id');
     this.router.navigate(['/login']);
     return true;
+  }
+
+  generateUrl(url): Observable<any>  {
+    const url_data = {
+      'user': localStorage.getItem('user_id'),
+      'url': url
+    }
+
+    return this.http.post(this.apiUrl + 'urls/', url_data, this.getOptions())
+      .pipe(catchError(this.handleError));
+
   }
 
   getOptions(): any {
