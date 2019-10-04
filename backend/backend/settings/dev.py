@@ -1,3 +1,7 @@
+from datetime import timedelta
+
+from django.conf import settings
+
 from backend.settings.base import Base
 from configurations import values
 import os
@@ -14,3 +18,4 @@ class Dev(Base):
 
     STATIC_URL = '/static/'
     STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
