@@ -5,9 +5,10 @@ from django.shortcuts import get_object_or_404, redirect
 from rest_framework import viewsets, status, permissions
 from rest_framework.decorators import permission_classes, api_view
 from rest_framework.response import Response
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 from core.models import Url
-from core.serializers import UrlSerializer
+from core.serializers import UrlSerializer, UserTokenSerializer
 
 
 class UrlViewSet(viewsets.ModelViewSet):
@@ -56,6 +57,14 @@ def get_url(request, pk):
     if datetime.datetime.now() > url.expire_at.replace(tzinfo=None):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
-    redirect_url = url.url if url.url[:8].lower() == 'https://' or url.url[:8].lower() == 'http://' else 'https://{0}'\
+    redirect_url = url.url if url.url[:8].lower() == 'https://' or url.url[:7].lower() == 'http://' else 'https://{0}'\
         .format(url.url)
     return HttpResponseRedirect(redirect_url)
+
+
+class UserTokenObtainPairView(TokenObtainPairView):
+    """
+    Generate:
+    New token session.
+    """
+    serializer_class = UserTokenSerializer

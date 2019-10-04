@@ -15,15 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework_simplejwt.views import TokenObtainPairView
 from django.conf.urls import url
 from rest_framework.documentation import include_docs_urls
-from core.views import get_url
-
+from core.views import get_url, UserTokenObtainPairView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/', UserTokenObtainPairView.as_view(), name='token_obtain_pair'),
     url(r'^docs/', include_docs_urls(title='URL Shorter', public=False)),
     path('api/v1/', include('core.urls.v1')),
     path('<pk>/', get_url),

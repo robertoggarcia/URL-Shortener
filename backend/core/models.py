@@ -16,6 +16,6 @@ class Url(models.Model):
     def save(self, *args, **kwargs):
         if not self.id:
             self.id = get_hash()
-        self.short_url = self.id
+        self.short_url = 'https://robggarcia.tech/{0}'.format(self.id)
         self.expire_at = datetime.datetime.now() + pd.DateOffset(years=2)
         super(Url, self).save(*args, **kwargs)
