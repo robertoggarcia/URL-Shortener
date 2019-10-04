@@ -14,7 +14,8 @@ class Url(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
 
     def save(self, *args, **kwargs):
-        self.id = get_hash()
+        if not self.id:
+            self.id = get_hash()
         self.short_url = self.id
         self.expire_at = datetime.datetime.now() + pd.DateOffset(years=2)
         super(Url, self).save(*args, **kwargs)
